@@ -1,7 +1,7 @@
 import  styled from "styled-components";
-import { Card } from "antd";
+import {Card} from "antd";
 
-export const StyledCard = styled(Card)`
+export const StyledFilmPage = styled.div`
   && { 
     width: 100%;
     height: 100%;

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { StyledCard } from "./FilmComponent.styles";
-import { Typography } from 'antd';
 import { NavLink } from "react-router-dom";
-const { Title, Paragraph, Text } = Typography;
+import { StyledFilmPage } from "./FilmPageComponent.styles";
+import { Typography } from 'antd';
+const { Title, Paragraph, Text, Link } = Typography;
 
-class FilmComponent extends Component {
+class FilmPageComponent extends Component {
   render() {
     const { itemInfo } = this.props;
 
     return (
-      <StyledCard className="FilmItem" hoverable={true}>
+      <StyledFilmPage className="FilmPage">
         <div className="ImageWrapper">
           <img className="FilmImage" src={itemInfo.medium_cover_image} alt={itemInfo.title}/>
         </div>
@@ -33,9 +33,9 @@ class FilmComponent extends Component {
             {itemInfo.rating}
           </Paragraph>
         </div>
-      </StyledCard>
+      </StyledFilmPage>
     )
   }
 }
 
-export default FilmComponent;
+export default FilmPageComponent;
