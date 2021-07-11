@@ -1,6 +1,6 @@
-import  styled from "styled-components";
-import {Card} from "antd";
+import styled from 'styled-components';
 
+// eslint-disable-next-line import/prefer-default-export
 export const StyledFilmPage = styled.div`
   && { 
     width: 100%;
@@ -19,4 +19,7 @@ export const StyledFilmPage = styled.div`
   .FilmTitle {
     margin-top: 15px;
   }
-`
+  .FilmPage {
+    padding: 20px 0;
+  }
+`;
