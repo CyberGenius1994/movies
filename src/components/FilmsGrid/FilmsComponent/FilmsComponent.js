@@ -9,19 +9,14 @@ class page extends Component {
     films: {
       movies: [],
     },
-
   };
 
   componentDidMount() {
-    try {
-      getFilms().then((data) => {
-        this.setState({ films: data.data });
-      }).catch((error) => {
-        console.error(error);
-      });
-    } catch (error) {
+    getFilms().then((data) => {
+      this.setState({ films: data.data });
+    }).catch((error) => {
       console.error(error);
-    }
+    });
   }
 
   render() {
@@ -31,7 +26,7 @@ class page extends Component {
       <>
         <StyledFilms className="Films">
           <Row gutter={[16, 16]} className="FilmsList">
-            {films && films.movies.map((itemInfo) => (
+            {films?.movies?.map((itemInfo) => (
               <Col key={itemInfo.id} span={6}>
                 <FilmComponent itemInfo={itemInfo} />
               </Col>

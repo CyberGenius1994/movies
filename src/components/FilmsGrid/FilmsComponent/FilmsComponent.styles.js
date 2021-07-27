@@ -4,8 +4,9 @@ import styled from 'styled-components';
 export const StyledFilms = styled.div`
   width: 100%;
   overflow: hidden;
-  padding: 20px;
+  padding: 4px 20px;
   .FilmsList {
+    padding: 16px 0;
     overflow: hidden;
   }
 `;

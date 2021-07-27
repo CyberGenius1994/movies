@@ -10,38 +10,28 @@ function FilmItemComponent(props) {
   const { itemInfo } = props;
 
   return (
-    <StyledCard className="FilmItem" hoverable>
-      <div className="ImageWrapper">
-        <img className="FilmImage" src={itemInfo.medium_cover_image} alt={itemInfo.title} />
+    <StyledCard className="film-item" hoverable>
+      <div className="film-image-wrapper">
+        <img className="film-image" src={itemInfo.medium_cover_image} alt={itemInfo.title} />
       </div>
-      <div className="FilmInfo">
+      <div className="film-info">
         <Title level={4} className="FilmTitle">
           <NavLink to={`/film/${itemInfo.id}`}>{itemInfo.title}</NavLink>
         </Title>
-        <Paragraph className="FilmDescription">
+        <Paragraph className="film-description">
           {itemInfo.description_full ? itemInfo.description_full : 'No description'}
         </Paragraph>
-        <Paragraph className="FilmGenres">
+        <Paragraph className="film-genres">
           <Text strong>Genres:&nbsp;</Text>
-          {itemInfo.genres.map((it, i) => (
-            i < itemInfo.genres.length - 1
-              ? (
-                <Text key={Math.random()} className="FilmGenre">
-                  {it}
-                  ,
-                  {' '}
-                </Text>
-              )
-              : (
-                <Text key={Math.random()} className="FilmGenre">
-                  {it}
-                  .
-                </Text>
-              )
+          {itemInfo.genres.map((item, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <Text key={index} className="film-genre">
+              {index < itemInfo.genres.length - 1 ? `${item}, ` : `${item}.`}
+            </Text>
           ))}
         </Paragraph>
-        <Paragraph className="FilmRating">
-          <Text strong>IMDB:</Text>
+        <Paragraph className="film-rating">
+          <Text strong>IMDB:&nbsp;</Text>
           {itemInfo.rating}
         </Paragraph>
       </div>
@@ -50,7 +40,11 @@ function FilmItemComponent(props) {
 }
 
 FilmItemComponent.propTypes = {
-  itemInfo: PropTypes.string.isRequired,
+  itemInfo: PropTypes.objectOf(PropTypes.any),
+};
+
+FilmItemComponent.defaultProps = {
+  itemInfo: {},
 };
 
 export default FilmItemComponent;
