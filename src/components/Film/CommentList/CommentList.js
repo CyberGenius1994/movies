@@ -7,8 +7,7 @@ const { Paragraph } = Typography;
 
 function CommentList({ comments, updateComments, openModal }) {
   function handleRemove(id) {
-    const filmComments = [...comments];
-    const newComponents = filmComments.filter((item) => item.id !== id);
+    const newComponents = comments.filter((item) => item.id !== id);
     updateComments(newComponents);
   }
 

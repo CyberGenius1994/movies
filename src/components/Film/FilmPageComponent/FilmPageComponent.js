@@ -17,11 +17,10 @@ class FilmPageComponent extends Component {
   };
 
   componentDidMount() {
-    const { match } = this.props;
-    const filmId = match.params.id;
+    const { match: { params: { id: filmId } = {} } = {} } = this.props;
 
-    getFilm(filmId).then((data) => {
-      this.setState({ filmInfo: data.data.movie });
+    getFilm(filmId).then(({ data: { data: { movie = {} } = {} } } = {}) => {
+      this.setState({ filmInfo: movie });
     }).catch((error) => {
       console.error(error);
     });
@@ -32,27 +31,34 @@ class FilmPageComponent extends Component {
   }
 
   render() {
-    const { filmInfo, visible } = this.state;
-    const { match } = this.props;
-    const { id: filmId } = match.params;
+    const {
+      filmInfo: {
+        title = {},
+        large_cover_image: cover = {},
+        description_full: description = {},
+        rating = {},
+      } = {},
+      visible,
+    } = this.state;
+    const { match: { params: { id: filmId } = {} } = {} } = this.props;
 
     return (
       <StyledFilmPage>
         <div className="Container">
           <Row gutter={16} className="FilmPage">
             <Col span={6}>
-              <Image src={filmInfo.large_cover_image} />
+              <Image src={cover} />
             </Col>
             <Col span={18} className="FilmInfo">
               <Title>
-                {filmInfo.title}
+                {title}
               </Title>
               <Paragraph>
-                {filmInfo.description_full}
+                {description}
               </Paragraph>
               <Paragraph>
                 <Text strong>IMDB:</Text>
-                {filmInfo.rating}
+                {rating}
               </Paragraph>
               <Paragraph>
                 <Text strong>Comments:</Text>

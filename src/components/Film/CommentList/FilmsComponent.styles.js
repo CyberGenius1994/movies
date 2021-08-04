@@ -10,6 +10,6 @@ export const StyledComments = styled.ul`
     justify-content: space-between;
   }
   button + button {
-    margin-left: 15;
+    margin-left: 15px;
   }
 `;
