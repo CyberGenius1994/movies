@@ -7,8 +7,6 @@ import {
 const CommentEdit = ({ visible, onCancel, onEdit }) => {
   const [form] = Form.useForm();
 
-  console.log(visible);
-
   return (
     <Modal
       visible={visible}
@@ -24,7 +22,7 @@ const CommentEdit = ({ visible, onCancel, onEdit }) => {
             onEdit(values);
           })
           .catch((info) => {
-            console.log('Validate Failed:', info);
+            console.error('Validate Failed:', info);
           });
       }}
     >

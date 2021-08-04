@@ -7,32 +7,40 @@ import { StyledCard } from './FilmItemComponent.styles';
 const { Title, Paragraph, Text } = Typography;
 
 function FilmItemComponent(props) {
-  const { itemInfo } = props;
+  const {
+    itemInfo: {
+      title = {},
+      medium_cover_image: cover = {},
+      description_full: description = {},
+      rating = {},
+      id = {},
+      genres = {},
+    } = {},
+  } = props;
 
   return (
     <StyledCard className="film-item" hoverable>
       <div className="film-image-wrapper">
-        <img className="film-image" src={itemInfo.medium_cover_image} alt={itemInfo.title} />
+        <img className="film-image" src={cover} alt={title} />
       </div>
       <div className="film-info">
         <Title level={4} className="FilmTitle">
-          <NavLink to={`/film/${itemInfo.id}`}>{itemInfo.title}</NavLink>
+          <NavLink to={`/film/${id}`}>{title}</NavLink>
         </Title>
         <Paragraph className="film-description">
-          {itemInfo.description_full ? itemInfo.description_full : 'No description'}
+          {description || 'No description'}
         </Paragraph>
         <Paragraph className="film-genres">
           <Text strong>Genres:&nbsp;</Text>
-          {itemInfo.genres.map((item, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Text key={index} className="film-genre">
-              {index < itemInfo.genres.length - 1 ? `${item}, ` : `${item}.`}
+          {genres.map((item, index) => (
+            <Text key={item} className="film-genre">
+              {index < genres.length - 1 ? `${item}, ` : `${item}.`}
             </Text>
           ))}
         </Paragraph>
         <Paragraph className="film-rating">
           <Text strong>IMDB:&nbsp;</Text>
-          {itemInfo.rating}
+          {rating}
         </Paragraph>
       </div>
     </StyledCard>

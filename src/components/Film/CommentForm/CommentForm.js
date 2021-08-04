@@ -26,7 +26,7 @@ function CommentForm(props) {
     const currDate = new Date();
     filmComments.push({
       id: uuidv4(),
-      date: currDate.toTimeString(),
+      date: currDate.toISOString(),
       message: values.comment,
     });
     updateComments(filmComments);
@@ -34,13 +34,9 @@ function CommentForm(props) {
   };
 
   const onEdit = (newMessage) => {
-    const newComments = comments.map((item) => {
-      const newItem = { ...item };
-      if (item.id === editId) {
-        newItem.message = newMessage.comment;
-      }
-      return newItem;
-    });
+    const newComments = comments.map((item) => (
+      { ...item, ...(item.id === editId ? { message: newMessage.comment } : {}) }
+    ));
     updateComments(newComments);
     setVisible(false);
   };
@@ -54,8 +50,7 @@ function CommentForm(props) {
     console.error('Failed:', errorInfo);
   };
 
-  const onCreate = (values) => {
-    console.log('Received values of form: ', values);
+  const onCreate = () => {
     setVisible(false);
   };
 
@@ -85,7 +80,7 @@ function CommentForm(props) {
             },
           ]}
         >
-          <TextArea rows={4} on />
+          <TextArea rows={4} />
         </Form.Item>
 
         <Form.Item
