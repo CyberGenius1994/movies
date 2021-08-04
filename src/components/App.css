@@ -4,19 +4,10 @@
   font-family: "Ubuntu", sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  height: auto ;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: white;
-  padding: 20px;
-}
 
-.App-link {
-  color: #61dafb;
-  font-weight: 900;
-  text-decoration: none;
-  font-size: 2em;
+
+.Container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
