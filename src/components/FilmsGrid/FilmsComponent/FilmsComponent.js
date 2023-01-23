@@ -12,8 +12,9 @@ class page extends Component {
   };
 
   componentDidMount() {
-    getFilms().then(({ data: { data = {} } = {} } = {}) => {
-      this.setState({ films: data });
+    // console.log(getFilms().then((result) => result.data).then((data) => data));
+    getFilms().then((data) => {
+      this.setState({ films: data.data });
     }).catch((error) => {
       console.error(error);
     });
@@ -21,6 +22,8 @@ class page extends Component {
 
   render() {
     const { films } = this.state;
+
+    console.log(films);
 
     return (
       <>

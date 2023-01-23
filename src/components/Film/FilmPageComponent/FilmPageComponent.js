@@ -17,10 +17,11 @@ class FilmPageComponent extends Component {
   };
 
   componentDidMount() {
-    const { match: { params: { id: filmId } = {} } = {} } = this.props;
+    const { match } = this.props;
+    const filmId = match.params.id;
 
-    getFilm(filmId).then(({ data: { data: { movie = {} } = {} } } = {}) => {
-      this.setState({ filmInfo: movie });
+    getFilm(filmId).then((data) => {
+      this.setState({ filmInfo: data.data.movie });
     }).catch((error) => {
       console.error(error);
     });
@@ -31,6 +32,8 @@ class FilmPageComponent extends Component {
   }
 
   render() {
+    const { match } = this.props;
+    const filmId = match.params.id;
     const {
       filmInfo: {
         title = {},
@@ -40,7 +43,6 @@ class FilmPageComponent extends Component {
       } = {},
       visible,
     } = this.state;
-    const { match: { params: { id: filmId } = {} } = {} } = this.props;
 
     return (
       <StyledFilmPage>
